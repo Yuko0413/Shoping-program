@@ -20,6 +20,7 @@ customer = Customer.new(gets.chomp)
 puts "🏧 ウォレットにチャージする金額を入力にしてください"
 customer.wallet.deposit(gets.chomp.to_i)
 
+#binding.irb
 puts "🛍️ ショッピングを開始します"
 end_shopping = false
 while !end_shopping do
@@ -45,19 +46,19 @@ while !end_shopping do
 end
 
 puts "💸 購入を確定しますか？(yes/no)"
-customer.cart.check_out if gets.chomp == "yes"
+customer.cart.check_out if gets.chomp == "yes"  #checkoutの呼び出し、Cartクラス、cartがselfになる(=customer.cart)
 
 puts "୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈結果┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧"
 puts "️🛍️ ️#{customer.name}の所有物"
-customer.items_list
-puts "😱👛 #{customer.name}のウォレット残高: #{customer.wallet.balance}"
+customer.items_list   #ここに反映されたい＝items_listを取ってきたい
+puts "😱👛 #{customer.name}のウォレット残高: #{customer.wallet.balance}" #customer.name=入力された名前
 
 puts "📦 #{seller.name}の在庫状況"
-seller.items_list
-puts "😻👛 #{seller.name}のウォレット残高: #{seller.wallet.balance}"
+seller.items_list #カート内のすべてのアイテムのオーナー権限が、カートのオーナーに移されること
+puts "😻👛 #{seller.name}のウォレット残高: #{seller.wallet.balance}" #カート内のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること
 
 puts "🛒 カートの中身"
-customer.cart.items_list
+customer.cart.items_list #カートの中身が空になること
 puts "🌚 合計金額: #{customer.cart.total_amount}"
 
 puts "🎉 終了"

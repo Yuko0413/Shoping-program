@@ -5,7 +5,7 @@ require_relative "item"
 # このモジュールをインクルードすると、自身の所有するItemインスタンスを操れるようになります。
 module ItemManager
   def items # 自身の所有する（自身がオーナーとなっている）全てのItemインスタンスを返します。
-    Item.all.select{|item| item.owner == self }
+    Item.all.select{|item| item.owner == self } #.select { |変数| ブロック処理 } アイテムクラスのすべての要素を取り出す。　item.ownerがselfで真。真の要素を返す
   end
 
   def pick_items(number, quantity) # numberと対応した自身の所有するItemインスタンスを指定されたquantitiy分返します。
